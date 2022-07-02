@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>diabetes</title>
+
+  <!-- font awesome link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- css file link -->
+  <link rel="stylesheet" href="../static/css/form.css">
+
+</head>
+<body>
+
+  <!-- header section start -->
+
+<header class="header">
+
+    <a href="index.html" class="logo"><i class="fas fa-heartbeat"> <span>E-LAB</span> </i></a>
+
+    <nav class="navbar">
+        <a href="index.html#home">home</a>
+        <a href="index.html#services">services</a>
+        <a href="index.html#doctors">doctors</a>
+        <a href="index.html#diagnose">diagnose</a>
+        <a href="index.html#book">book</a>
+    </nav>
+
+<div id="menu-btn" class="fas fa-bars"></div>
+
+</header>
+
+  <!-- header section end -->
+
+    <!-- form section start -->
+
+    <section class="formbox">
+
+      <h1 class="heading"> <span>diabetes</span></h1>
+  
+      <div class="row">
+  
+        <div class="image">
+          <img src="../static/image/Diabetes.gif" alt="">
+        </div>
+  
+        
+        <form method="POST", action="/DIABETES">
+          <h3>check up</h3>
+          <p>Answer the following questions then start.</p>
+
+          
+            <label for="inp_age">Age</label>
+            <input type="number" min="1" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="box" name='Age' value="Age"  maxlength="2" />
+          
+
+          <div class="gender">
+            <label for="gender">Gender</label>
+              <select id="Gender", name='Gender'>
+                <option class="box" value="Gender" disabled selected>*Please Select*</option>
+                <option value=1 >male</option>
+                <option value=0 >female</option>
+
+              </select>
+          </div>
+          <h4></h4>
+          <table>
+            <tr>
+              <th class="first-col" id="inp_firstcol"></th>
+              <th>Yes</th>
+              <th>NO</th>
+  
+            </tr>
+            <tr>
+              <td class="first-col">If you may feel thirsty all of the time or have persistent dry mouth?</td>
+              <td><input type="radio" value=1 name='Polydipsia'id="Polydipsia" /></td>
+              <td><input type="radio" value=0 name='Polydipsia' id="Polydipsia"/></td>
+  
+            </tr>
+            <tr>
+              <td class="first-col">If you urinate more than 6-7 times in day?</td>
+              <td><input type="radio" value=1 name='Polyuria' id="Polyuria" /></td>
+              <td><input type="radio" value=0 name='Polyuria' id="Polyuria"/></td>
+  
+            </tr>
+            <tr>
+              <td class="first-col">Are you suffer Sudden loss weight?</td>
+              <td><input type="radio" value=1 name='Sudden Weight Loss' id="Sudden Weight Loss"/></td>
+              <td><input type="radio" value=0 name='Sudden Weight Loss' id="Sudden Weight Loss"/></td>
+  
+            </tr>
+            <tr>
+              <td class="first-col">Do you suffer from hair loss (alopecia)?</td>
+              <td><input type="radio" value=1 name='Alopecea' id="Alopecea"/></td>
+              <td><input type="radio" value=0 name='Alopecea' id="Alopecea"/></td>
+  
+            </tr>
+          </table>
+  
+          <h4>Any comments, questions or suggestions?</h4>
+          <textarea rows="5" id="inp_comment"></textarea>
+          <button type="submit" class="btn", value='pred'>start</button>
+
+        </form>
+  
+      </div>
+      <!-- API result section start -->
+      <div class="predict">
+        {% if pred %}
+        <h2> Result: <i> {{pred}} </i></h2>
+        {% endif %}
+      </div>
+      <!-- API result section end -->
+    </section>
+
+  <!-- form section end -->
+
+  <!-- API result section start -->
+    <section>
+    </section>
+
+  <!-- API result section end -->
+
+  <!-- footer section starts  -->
+
+<section class="footer">
+
+  <div class="box-container">
+
+      <div class="box">
+          <h3>quick links</h3>
+          <a href="index.html#home"> <i class="fas fa-chevron-right"></i> home </a>
+          <a href="index.html#services"> <i class="fas fa-chevron-right"></i> services </a>
+          <a href="index.html#doctors"> <i class="fas fa-chevron-right"></i> doctors </a>
+          <a href="index.html#diagnose"> <i class="fas fa-chevron-right"></i> diagnose </a>
+          <a href="index.html#book"> <i class="fas fa-chevron-right"></i> book </a>
+      </div>
+
+      <div class="box">
+          <h3>our services</h3>
+          <a href="skin.html"> <i class="fas fa-chevron-right"></i> skin cancer </a>
+          <a href="xray.html"> <i class="fas fa-chevron-right"></i> chest x-ray </a>
+          <a href="diabetes.html"> <i class="fas fa-chevron-right"></i> diabetes </a>
+      </div>
+
+      <div class="box">
+          <h3>contact info</h3>
+          <a href="#"> <i class="fas fa-phone"></i> +20 100-326-7192 </a>
+          <a href="#"> <i class="fas fa-phone"></i> +20 111-238-5132 </a>
+          <a href="#"> <i class="fas fa-envelope"></i> @gmail.com </a>
+          <a href="#"> <i class="fas fa-envelope"></i> @gmail.com </a>
+          <a href="#"> <i class="fas fa-map-marker-alt"></i> cairo, egypt</a>
+      </div>
+
+      <div class="box">
+          <h3>follow us</h3>
+          <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+          <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+
+
+      </div>
+
+  </div>
+
+  <div class="credit">  <span></span> all rights reserved </div>
+
+</section>
+
+<!-- footer section ends -->
+
+
+
+
+<!-- js file link -->
+<script src="../static/js/script.js"></script>
+
+
+
+<script>
+
+const myForm = document.getElementById('myForm');
+const searchParams = new URLSearchParams();
+
+myForm.addEventListener('submit' , function (e) {
+  // to prevent page from reload when send data
+  e.preventDefault();    
+  
+  const formData = new FormData(this);
+
+  fetch('php/form.php' , {
+    method: 'post' ,
+    body: formData
+  }).then(function (response) {
+    return response.text();
+    
+  }).then(function (text) {
+    console.log(text);
+
+  }).catch(function (error) {
+    console.error(error);
+  })
+
+})
+
+</script>
+
+</body>
+</html>

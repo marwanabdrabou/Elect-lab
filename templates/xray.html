@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chest x-ray</title>
+
+  <!-- font awesome link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- css file link -->
+  <link rel="stylesheet" href="../static/css/photo.css">
+
+</head>
+<body>
+
+  <!-- header section start -->
+
+<header class="header">
+
+    <a href="index.html" class="logo"><i class="fas fa-heartbeat"> <span>E-LAB</span> </i></a>
+
+    <nav class="navbar">
+        <a href="index.html#home">home</a>
+        <a href="index.html#services">services</a>
+        <a href="index.html#doctors">doctors</a>
+        <a href="index.html#diagnose">diagnose</a>
+        <a href="index.html#book">book</a>
+    </nav>
+
+<div id="menu-btn" class="fas fa-bars"></div>
+
+</header>
+
+  <!-- header section end -->
+
+  <!-- upload section start -->
+  <section class="base" id="base">
+
+    <h1 class="heading">chest <span>x-ray</span></h1>
+
+    <div class="row">
+
+      <div class="image">
+        <img src="../static/image/chest-image.svg" alt="">
+      </div>
+
+      <div class="container">
+        <h3>Upload Your Photo</h3>
+      <form class="form-horizontal" action="/XRAY" method="post" enctype="multipart/form-data">
+        <div class="drag-area">
+          <div class="icon">
+            <i class="fas fa-images"></i>
+          </div>
+    
+          <!-- names on photo box (before choose photo) -->
+    
+          <span class="head"> Drag & Drop </span>
+          <span class="head"> or <span class="button"> browse </span> </span>
+          <input type="file" class="form-control" name="image" id="pwd" >
+          <span class="support">Supports: PNG, JPG, JPEG</span>
+        </div>
+        <button type="submit" class="btn", value='pre'>start</button>
+      </form>
+      </div>
+    
+    </div>
+
+  <!-- API result section start -->
+
+  <div>
+
+    <div class="result"> <h2> Result: <i> {{pre}} </i></h2> </div>
+
+  </div>
+
+  <!-- API result section end -->
+
+  </section> 
+  <!-- upload section end -->
+  
+
+
+    <!-- footer section starts  -->
+
+<section class="footer">
+
+  <div class="box-container">
+
+      <div class="box">
+          <h3>quick links</h3>
+          <a href="index.html#home"> <i class="fas fa-chevron-right"></i> home </a>
+          <a href="index.html#services"> <i class="fas fa-chevron-right"></i> services </a>
+          <a href="index.html#doctors"> <i class="fas fa-chevron-right"></i> doctors </a>
+          <a href="index.html#diagnose"> <i class="fas fa-chevron-right"></i> diagnose </a>
+          <a href="index.html#book"> <i class="fas fa-chevron-right"></i> book </a>
+      </div>
+
+      <div class="box">
+          <h3>our services</h3>
+          <a href="skin.html"> <i class="fas fa-chevron-right"></i> skin cancer </a>
+          <a href="xray.html"> <i class="fas fa-chevron-right"></i> chest x-ray </a>
+          <a href="diabetes.html"> <i class="fas fa-chevron-right"></i> diabetes </a>
+      </div>
+
+      <div class="box">
+          <h3>contact info</h3>
+          <a href="#"> <i class="fas fa-phone"></i> +20 100-326-7192 </a>
+          <a href="#"> <i class="fas fa-phone"></i> +20 111-238-5132 </a>
+          <a href="#"> <i class="fas fa-envelope"></i> @gmail.com </a>
+          <a href="#"> <i class="fas fa-envelope"></i> @gmail.com </a>
+          <a href="#"> <i class="fas fa-map-marker-alt"></i> cairo, egypt</a>
+      </div>
+
+      <div class="box">
+          <h3>follow us</h3>
+          <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+          <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+
+
+      </div>
+
+  </div>
+
+  <div class="credit">  <span></span> all rights reserved </div>
+
+</section>
+
+
+
+<!-- footer section ends -->
+
+
+<!-- js file link -->
+<script src="../static/js/script.js"></script>
+
+<!-- <script>
+  const myForm = document.getElementById("myForm");
+  const inpFile = document.getElementById("inpFile"); 
+
+  myForm.addEventListener("submit" , e => {
+    e.preventDefault();
+
+    const endpoint = "php/upload.php";
+    const formData = new formData();
+
+    console.log(inpFile.files);
+
+    formData.append("inpFile" , inpFile.files[0]);
+
+    fetch(endpoint , {
+      method: "post" ,
+      body: formData
+    }).catch(console.error)
+  })
+</script> -->
+
+</body>
+</html>
