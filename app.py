@@ -14,7 +14,7 @@ from pydantic import BaseModel
 import uvicorn
 import json
 from fastapi.middleware.cors import CORSMiddleware
-#import nest_asyncio
+import nest_asyncio
 #from pyngrok import ngrok
 
 #______________________________________________________Fastapi APPLICATION________________________________________________________________#
@@ -259,5 +259,5 @@ async def get_result():
 
 #ngrok_tunnel=ngrok.connect(8000)
 #print('public URL:', ngrok_tunnel.public_url)
-#nest_asyncio.apply()
+nest_asyncio.apply()
 uvicorn.run(app, port=8080)
