@@ -259,5 +259,5 @@ async def get_result():
 
 #ngrok_tunnel=ngrok.connect(8000)
 #print('public URL:', ngrok_tunnel.public_url)
-nest_asyncio.apply()
+#nest_asyncio.apply()
 uvicorn.run(app, port=8080)
