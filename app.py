@@ -14,7 +14,7 @@ from pydantic import BaseModel
 import uvicorn
 import json
 from fastapi.middleware.cors import CORSMiddleware
-import nest_asyncio
+#import nest_asyncio
 #from pyngrok import ngrok
 
 #______________________________________________________Fastapi APPLICATION________________________________________________________________#
@@ -28,7 +28,7 @@ results_skin=[]
 results_diabetes=[]
 results_xray=[]
 results_brain=[]
-results_breast=[]
+#results_breast=[]
 
 
 app.add_middleware(
@@ -232,32 +232,32 @@ async def get_result():
     return results_brain[0]
 
 #______________________________________________________________Breast Cancer API___________________________________________________________________#
-@app.post('/Breast_cancer_seg')
-async def scoring_endpoint(data: UploadFile = File(...)): 
-    model_breast = SegmentationModel().model
-    model_breast.load_weights('Breast_Cancer_Unet.hdf5') 
+#@app.post('/Breast_cancer_seg')
+#async def scoring_endpoint(data: UploadFile = File(...)): 
+#    model_breast = SegmentationModel().model
+#    model_breast.load_weights('Breast_Cancer_Unet.hdf5') 
 
-    image = read_imagefile(await data.read())
-    image = image.resize((128, 128))
-    image = image.convert("L")
-    image = img_to_array(image)
+#    image = read_imagefile(await data.read())
+#    image = image.resize((128, 128))
+#    image = image.convert("L")
+#    image = img_to_array(image)
     
     #image = tf.io.decode_image(image) 
-    image = np.expand_dims(image, axis=0)
-    image /=255.0
-    pred = model_breast.predict(image)
-    d={"prediction": json.dumps(pred.tolist())}
-    results_breast.clear()
-    results_breast.append(d)
-    return d
+#    image = np.expand_dims(image, axis=0)
+#    image /=255.0
+#    pred = model_breast.predict(image)
+#    d={"prediction": json.dumps(pred.tolist())}
+#    results_breast.clear()
+#    results_breast.append(d)
+#    return d
 
-@app.get("/ResBreast")
-async def get_result():
-    return results_breast[0]
+#@app.get("/ResBreast")
+#async def get_result():
+#    return results_breast[0]
 
 #_______________________________________________________START APPLICATION_________________________________________________________________________#
 
 #ngrok_tunnel=ngrok.connect(8000)
 #print('public URL:', ngrok_tunnel.public_url)
-nest_asyncio.apply()
+#nest_asyncio.apply()
 uvicorn.run(app, port=8000)
