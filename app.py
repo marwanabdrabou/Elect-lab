@@ -15,6 +15,7 @@ import uvicorn
 import json
 from fastapi.middleware.cors import CORSMiddleware
 import nest_asyncio
+import os
 #from pyngrok import ngrok
 
 #______________________________________________________Fastapi APPLICATION________________________________________________________________#
@@ -261,5 +262,5 @@ async def get_result():
 #print('public URL:', ngrok_tunnel.public_url)
 #nest_asyncio.apply()
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=os.getenv("PORT", default=5000), log_level="info")
+    uvicorn.run("app:app", host="0.0.0.0", port=os.getenv("PORT", default=5000), log_level="info")
 #uvicorn.run(app, port=8080)
