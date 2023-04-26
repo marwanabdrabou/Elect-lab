@@ -1,4 +1,3 @@
-#_________________________________________________________IMPORT LIBARY________________________________________________________________#
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -16,14 +15,10 @@ import json
 from fastapi.middleware.cors import CORSMiddleware
 import nest_asyncio
 import os
-from pyngrok import ngrok
 
-#______________________________________________________Fastapi APPLICATION________________________________________________________________#
 
 app = FastAPI()
 origins = ["*"]
-
-#______________________________________________________List of Results____________________________________________________________________#
 
 results_skin=[]
 results_diabetes=[]
@@ -40,13 +35,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-#______________________________________________________Function to read File________________________________________________________________#
 
 def read_imagefile(file) -> Image.Image:
     image = Image.open(BytesIO(file))
     return image
 
-#____________________________________________________________Skin API________________________________________________________________________#
 
 @app.post("/skin_cancer_predict")
 async def predict_api(file: UploadFile = File(...)):
@@ -102,7 +95,6 @@ async def predict_api(file: UploadFile = File(...)):
 async def get_result():
     return results_skin[0]
 
-#___________________________________________________________Diabetes API_______________________________________________________________________#
 
 class model_input_Diabetes(BaseModel):
     
@@ -148,7 +140,6 @@ async def get_predict(input : model_input_Diabetes):
 async def get_result():
     return results_diabetes[0]
 
-#______________________________________________________________X-Ray API_______________________________________________________________________#
 
 @app.post('/chest_predict')
 async def predict_api(file: UploadFile = File(...)):
@@ -184,7 +175,7 @@ async def predict_api(file: UploadFile = File(...)):
 async def get_result():
     return results_xray[0]
 
-#______________________________________________________________Brain API_______________________________________________________________________#
+
 
 @app.post("/brain_tumor_predict")
 async def predict_api(file: UploadFile = File(...)):
@@ -224,7 +215,7 @@ async def predict_api(file: UploadFile = File(...)):
 async def get_result():
     return results_brain[0]
 
-#______________________________________________________________Breast Cancer API___________________________________________________________________#
+
 @app.post('/Breast_cancer')
 async def predict_api(file: UploadFile = File(...)):
     extension = file.filename.split(".")[-1] in ("jpg", "jpeg", "png")
@@ -262,11 +253,5 @@ async def predict_api(file: UploadFile = File(...)):
 async def get_result():
     return results_breast[0]
 
-#_______________________________________________________START APPLICATION_________________________________________________________________________#
-
-#ngrok_tunnel=ngrok.connect(8000)
-#print('public URL:', ngrok_tunnel.public_url)
-#nest_asyncio.apply()
 if __name__ == "__main__":
     uvicorn.run("app:app", host="0.0.0.0", port=os.getenv("PORT", default=5000), log_level="info")
-#uvicorn.run(app, port=8080)
