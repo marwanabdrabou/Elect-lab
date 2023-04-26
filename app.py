@@ -1,4 +1,3 @@
-
 import warnings
 warnings.filterwarnings("ignore")
 import tensorflow as tf
@@ -15,7 +14,7 @@ import json
 from fastapi.middleware.cors import CORSMiddleware
 import nest_asyncio
 import os
-
+import h5py
 
 app = FastAPI()
 origins = ["*"]
@@ -231,7 +230,8 @@ async def predict_api(file: UploadFile = File(...)):
     image = img_to_array(image)
     image = np.expand_dims(image, axis=0)
     
-    model_breast =tf.keras.models.load_model('best_model_2.hdf5')
+    model_breast = h5py.File('best_model_2.hdf5', "r")
+    model_breast =tf.keras.models.load_model(model_breast)
     
     
     label_mapping_breast = {
@@ -254,4 +254,4 @@ async def get_result():
     return results_breast[0]
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=os.getenv("PORT", default=5000), log_level="info")
+    uvicorn.run("app:app", host="0.0.0.0", port=os.getenv("PORT", default=5000))
