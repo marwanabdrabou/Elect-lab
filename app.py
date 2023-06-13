@@ -17,7 +17,7 @@ import os
 import h5py
 
 app = FastAPI()
-origins = ["*"]
+origins = ["http://localhost:8000", "http://localhost:3000"]
 
 results_skin=[]
 results_diabetes=[]
@@ -254,4 +254,4 @@ async def get_result():
     return results_breast[0]
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=os.getenv("PORT", default=5000)
+    uvicorn.run("app:app", host="0.0.0.0", port=os.getenv("PORT", default=8000)
