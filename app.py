@@ -81,7 +81,14 @@ async def predict_api(file: UploadFile = File(...)):
         4: 'Actinic keratoses',
         5: 'Vascular lesions',
         6: 'Dermatofibroma'}
-    return {"result": lesion_type_dict[label_mapping[np.argmax(model_Skin.predict(image))]]}
+    d=lesion_type_dict[label_mapping[np.argmax(model_Skin.predict(image))]]
+    skin.clear()
+    skin.append(d)
+    return {"result": d}
+    
+@app.get("/ResSkin")
+async def get_Result():
+    return skin[0]
 
 class model_input_Diabetes(BaseModel):
     
@@ -112,15 +119,14 @@ def diabetes_predd(input_parameters : model_input_Diabetes):
     prediction = model_diabetes.predict([input_list])
     dia.clear()
     dia.append(prediction)
-    return prediction
-    #if (prediction[0] == 0):
-     #   return {"result":'Negative'}
-    #else:
-     #   return {"result":'Positive'}
+    if (prediction[0] == 0):
+        return {"result":'Negative'}
+    else:
+        return {"result":'Positive'}
 
 @app.get("/ResDia")
 async def get_Result():
-    if (dia[0] == 0):
+    if (dia[0] == [0]):
         return {"result":'Negative'}
     else:
         return {"result":'Positive'}
@@ -149,7 +155,14 @@ async def predict_api(file: UploadFile = File(...)):
      "Pneumonia":'Pneumonia',
      "Normal" :'Normal'}
     
-    return {"result":all_labels_chest[label_mapping_chest[np.argmax(model_chest.predict(image))]]}
+    c=all_labels_chest[label_mapping_chest[np.argmax(model_chest.predict(image))]]
+    xray.clear()
+    xray.append(c)
+    return {"result":c}
+
+@app.get("/ResXray")
+async def get_Result():
+    return xray[0]
 
 @app.post("/brain_tumor_predict")
 async def predict_api(file: UploadFile = File(...)):
@@ -182,38 +195,14 @@ async def predict_api(file: UploadFile = File(...)):
      "meningioma_tumor" :'Meningioma Tumor',
      "pituitary_tumor" :'Pituitary Tumor'}
 
-    return {"result": all_labels_brain[label_mapping_brain[np.argmax(model_Brain.predict(image))]]}
+    b=all_labels_brain[label_mapping_brain[np.argmax(model_Brain.predict(image))]]
+    brain.clear()
+    brain.append(b)
+    return {"result": b}
 
-@app.post('/Breast_cancer')
-async def predict_api(file: UploadFile = File(...)):
-    extension = file.filename.split(".")[-1] in ("jpg", "jpeg", "png")
-    if not extension:
-        return "Image must be jpg or png format!"
-    
-    image = read_imagefile(await file.read())
-    
-    if image.mode != "RGB":
-        image = image.convert("RGB")
-
-    image = image.resize((224, 224))
-    image = img_to_array(image)
-    image = np.expand_dims(image, axis=0)
-    model_breast = h5py.File('best_model_2.hdf5', "r")
-    model_breast =tf.keras.models.load_model(model_breast)
-    
-    
-    label_mapping_breast = {
-        0: "Benign",
-        1:"malignant",
-        2:"normal"}
-
-    all_labels_breast = {
-     "Benign":'Benign',
-     "malignant" :'malignant',
-     "normal" :'normal'}
-
-    return {"result":all_labels_breast[label_mapping_breast[np.argmax(model_breast.predict(image))]]}
-
+@app.get("/ResBrain")
+async def get_Result():
+    return brain[0]
 
 if __name__ == "__main__":
     uvicorn.run("app:app", host="0.0.0.0", port=os.getenv("PORT", default=5000))
