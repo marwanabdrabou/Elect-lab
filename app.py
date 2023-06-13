@@ -17,14 +17,14 @@ import os
 import h5py
 
 app = FastAPI()
-origins = ["http://localhost:5000", "http://localhost:3000"]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins
-    #allow_credentials=True,
-    #allow_methods=["*"],
-    #allow_headers=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 def read_imagefile(file) -> Image.Image:
