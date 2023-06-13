@@ -27,6 +27,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+dia=[]
+skin=[]
+xray=[]
+brain=[]
+
 def read_imagefile(file) -> Image.Image:
     image = Image.open(BytesIO(file))
     return image
@@ -105,12 +110,21 @@ def diabetes_predd(input_parameters : model_input_Diabetes):
     input_list = [ Polydipsia, Polyuria,Gender,Age,  Sudden_Weight_Loss, Alopecea]
     
     prediction = model_diabetes.predict([input_list])
-    
-    if (prediction[0] == 0):
+    dia.clear()
+    dia.append(prediction)
+    return prediction
+    #if (prediction[0] == 0):
+     #   return {"result":'Negative'}
+    #else:
+     #   return {"result":'Positive'}
+
+@app.get("/ResDia")
+async def get_Result():
+    if (dia[0] == 0):
         return {"result":'Negative'}
     else:
         return {"result":'Positive'}
-
+    
 @app.post('/chest_predict')
 async def predict_api(file: UploadFile = File(...)):
     extension = file.filename.split(".")[-1] in ("jpg", "jpeg", "png")
