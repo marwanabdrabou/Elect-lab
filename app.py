@@ -88,7 +88,7 @@ async def predict_api(file: UploadFile = File(...)):
     
 @app.get("/ResSkin")
 async def get_Result():
-    return skin[0]
+    return {"result":skin[0]}
 
 class model_input_Diabetes(BaseModel):
     
@@ -162,7 +162,7 @@ async def predict_api(file: UploadFile = File(...)):
 
 @app.get("/ResXray")
 async def get_Result():
-    return xray[0]
+    return {"result":xray[0]}
 
 @app.post("/brain_tumor_predict")
 async def predict_api(file: UploadFile = File(...)):
@@ -202,7 +202,7 @@ async def predict_api(file: UploadFile = File(...)):
 
 @app.get("/ResBrain")
 async def get_Result():
-    return brain[0]
+    return {"result":brain[0]}
 
 if __name__ == "__main__":
     uvicorn.run("app:app", host="0.0.0.0", port=os.getenv("PORT", default=5000))
